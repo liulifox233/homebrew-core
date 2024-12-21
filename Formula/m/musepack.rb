@@ -42,8 +42,10 @@ class Musepack < Formula
   end
 
   def install
-    system "cmake", ".", *std_cmake_args
-    system "make", "install"
+    system "cmake", "-S", ".", "-B", "build", *std_cmake_args
+    system "cmake", "--build", "build"
+    system "cmake", "--install", "build"
+
     lib.install "libmpcdec/libmpcdec.dylib"
   end
 
